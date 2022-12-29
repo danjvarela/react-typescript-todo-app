@@ -5,22 +5,21 @@ import { Task, SavedTask } from './interfaces';
 
 interface TaskState {
   tasks: SavedTask[];
-  addTask: (task: Task) => SavedTask;
+  addTask: (task: Task) => SavedTask | false;
   removeTask: (id: string) => boolean;
   findTask: (id: string) => SavedTask | false;
-  updateTask: (
-    id: string,
-    newAttributes: { body?: string }
-  ) => SavedTask | false;
+  updateTask: (id: string, attributes: { body?: string }) => SavedTask | false;
 }
 
 type GetState = StoreApi<TaskState>['getState'];
 type SetState = StoreApi<TaskState>['setState'];
 
 const addTask = (set: SetState, get: GetState) => (task: Task) => {
+  const { body } = task;
+  if (body === '') return false;
   const createdTask = {
     id: uuidv4(),
-    body: task.body,
+    body,
     createdAt: new Date(),
   };
   set({ tasks: [...get().tasks, createdTask] });
