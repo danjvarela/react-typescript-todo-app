@@ -1,7 +1,7 @@
 import create, { StoreApi } from 'zustand';
 import { persist } from 'zustand/middleware';
 import { v4 as uuidv4 } from 'uuid';
-import { Task, SavedTask } from './interfaces';
+import { Task, SavedTask } from '@ts/interfaces/task';
 
 interface TaskState {
   tasks: SavedTask[];
