@@ -8,7 +8,10 @@ interface TaskState {
   addTask: (task: Task) => SavedTask | false;
   removeTask: (id: string) => boolean;
   findTask: (id: string) => SavedTask | false;
-  updateTask: (id: string, attributes: { body?: string }) => SavedTask | false;
+  updateTask: (
+    id: string,
+    attributes: { body?: string; done?: boolean }
+  ) => SavedTask | false;
 }
 
 type GetState = StoreApi<TaskState>['getState'];
@@ -20,6 +23,7 @@ const addTask = (set: SetState, get: GetState) => (task: Task) => {
   const createdTask = {
     id: uuidv4(),
     body,
+    done: false,
     createdAt: new Date(),
   };
   set({ tasks: [...get().tasks, createdTask] });
@@ -39,7 +43,7 @@ const removeTask = (set: SetState, get: GetState) => (id: string) => {
 
 const updateTask =
   (set: SetState, get: GetState) =>
-  (id: string, attributes: { body?: string }) => {
+  (id: string, attributes: { body?: string; done?: boolean }) => {
     const { tasks } = get();
     const savedTaskId = tasks.findIndex((task) => task.id === id);
     if (savedTaskId === -1) return false;

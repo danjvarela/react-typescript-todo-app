@@ -5,5 +5,6 @@ export interface Task {
 export interface SavedTask {
   id: string;
   body: string;
+  done: boolean;
   createdAt: Date;
 }

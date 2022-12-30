@@ -1,7 +1,8 @@
-import { ListItem, HStack, Checkbox } from '@chakra-ui/react';
+import { ListItem, HStack } from '@chakra-ui/react';
 import { SavedTask } from '@ts/interfaces/task';
 import RemoveTaskButton from '@components/RemoveTaskButton';
 import EditTaskInput from '@components/EditTaskInput';
+import TaskCheckbox from '@components/TaskCheckbox';
 
 type TaskProps = {
   task: SavedTask;
@@ -19,7 +20,7 @@ export default function TaskItem({ task }: TaskProps) {
       gap={5}
     >
       <HStack w="full">
-        <Checkbox defaultChecked />
+        <TaskCheckbox task={task} />
         <EditTaskInput task={task} />
       </HStack>
       <RemoveTaskButton id={id} />
