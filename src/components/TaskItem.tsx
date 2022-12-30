@@ -7,10 +7,9 @@ import {
   EditablePreview,
   Input,
   EditableInput,
-  IconButton,
 } from '@chakra-ui/react';
 import { SavedTask } from '@ts/interfaces/task';
-import { DeleteIcon } from '@chakra-ui/icons';
+import RemoveTaskButton from '@components/RemoveTaskButton';
 
 type TaskProps = {
   task: SavedTask;
@@ -19,7 +18,7 @@ type TaskProps = {
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export default function TaskItem({ task, key }: TaskProps) {
-  const { body } = task;
+  const { body, id } = task;
 
   return (
     <ListItem
@@ -42,13 +41,7 @@ export default function TaskItem({ task, key }: TaskProps) {
           <Input as={EditableInput} w="full" />
         </Editable>
       </HStack>
-      <IconButton
-        size="sm"
-        variant="ghost"
-        isRound
-        icon={<DeleteIcon />}
-        aria-label="Delete task button"
-      />
+      <RemoveTaskButton id={id} />
     </ListItem>
   );
 }
