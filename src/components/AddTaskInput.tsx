@@ -3,7 +3,7 @@ import {
   InputGroup,
   InputRightElement,
   Button,
-  Box,
+  Flex,
 } from '@chakra-ui/react';
 import useTaskStore from '@stores/task';
 import { useState } from 'react';
@@ -27,7 +27,7 @@ export default function AddTaskInput() {
   };
 
   return (
-    <Box w="full" as="form" onSubmit={handleAddTask}>
+    <Flex w="full" justifyContent="center" as="form" onSubmit={handleAddTask}>
       <InputGroup size="md" maxW="container.sm" w="full">
         <Input
           pr={5}
@@ -42,6 +42,6 @@ export default function AddTaskInput() {
           </Button>
         </InputRightElement>
       </InputGroup>
-    </Box>
+    </Flex>
   );
 }

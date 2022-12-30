@@ -42,7 +42,7 @@ const updateTask =
   (id: string, attributes: { body?: string }) => {
     const { tasks } = get();
     const savedTaskId = tasks.findIndex((task) => task.id === id);
-    if (!savedTaskId) return false;
+    if (savedTaskId === -1) return false;
     tasks[savedTaskId] = { ...tasks[savedTaskId], ...attributes };
     set({ tasks });
     return tasks[savedTaskId];
